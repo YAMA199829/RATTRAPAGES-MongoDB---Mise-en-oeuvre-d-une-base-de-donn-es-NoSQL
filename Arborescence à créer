@@ -1,0 +1,23 @@
+my-api-project/
+├── docker/
+│   └── Dockerfile.api
+├── src/
+│   ├── config/
+│   │   └── database.js
+│   ├── controllers/
+│   │   └── user.controller.js
+│   ├── services/
+│   │   └── user.service.js
+│   ├── models/
+│   │   └── user.model.js
+│   ├── validations/
+│   │   └── user.schema.js
+│   ├── middlewares/
+│   │   └── validate.middleware.js
+│   ├── routes/
+│   │   └── user.routes.js
+│   ├── app.js
+│   └── server.js
+├── docker-compose.yml
+├── package.json
+└── README.md
