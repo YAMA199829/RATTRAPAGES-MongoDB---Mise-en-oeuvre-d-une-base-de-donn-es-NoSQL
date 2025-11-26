@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.api
+    container_name: api-server
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - MONGO_URI=mongodb://mongo:27017/mydb
+      - INFLUX_URL=http://influxdb:8086
+      - INFLUX_TOKEN=my-token
+      - INFLUX_ORG=my-org
+      - INFLUX_BUCKET=my-bucket
+    depends_on:
+      - mongo
+      - influxdb
+
+  mongo:
+    image: mongo:6
+    container_name: mongo-db
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  influxdb:
+    image: influxdb:2.7
+    container_name: influx-db
+    restart: always
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+
+volumes:
+  mongo_data:
+  influxdb_data:
